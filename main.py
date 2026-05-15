@@ -8,7 +8,9 @@ from telegram.ext import (
 )
 
 TOKEN = "8943672380:AAGyuzgm2cCRKvKmXRkYgD-3kHoQOh5L1aM"
+usuarios_esperando_codigo = set()
 
+CODIGO_CORRECTO = "1234"
 keyboard = [
     ["📺 Activar TV", "🔐 Login"],
     ["👤 Cuenta", "📊 Stats"],
