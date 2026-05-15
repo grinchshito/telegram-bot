@@ -34,8 +34,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
 
     if text == "📺 Activar TV":
-        
-usuarios_esperando_codigo.add(update.effective_user.id)
+        usuarios_esperando_codigo.add(update.effective_user.id)
         await update.message.reply_text("🔑 Envia el código de activación")
 
     elif text == "🔐 Login":
