@@ -34,7 +34,8 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
 
     if text == "📺 Activar TV":
-        await update.message.reply_text("TV activada")
+    usuarios_esperando_codigo.add(update.effective_user.id)
+    await update.message.reply_text("🔑 Envia el código de activación")
 
     elif text == "🔐 Login":
         await update.message.reply_text("Login correcto")
@@ -47,6 +48,14 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif text == "❓ Ayuda":
         await update.message.reply_text("Centro de ayuda")
+    elif update.effective_user.id in usuarios_esperando_codigo:
+
+    if text == CODIGO_CORRECTO:
+        await update.message.reply_text("✅ TV activada correctamente")
+    else:
+        await update.message.reply_text("❌ Código incorrecto")
+
+    usuarios_esperando_codigo.remove(update.effective_user.id)
 
 app = Application.builder().token(TOKEN).build()
 
