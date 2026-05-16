@@ -51,7 +51,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif update.effective_user.id in usuarios_esperando_codigo:
 
         response = requests.post(
-    f"http://127.0.0.1:8000/activar/{text}"
+    f"http://192.168.15.50:8000/activar/{text}"
 )
 
 data = response.json()
