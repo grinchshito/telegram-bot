@@ -50,25 +50,25 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("Centro de ayuda")
     elif update.effective_user.id in usuarios_esperando_codigo:
 
-        response = requests.post(
-    f"http://192.168.15.50:8000/activar/{text}"
-)
+          elif update.effective_user.id in usuarios_esperando_codigo:
 
-data = response.json()
-
-if data.get("success"):
-
-    await update.message.reply_text(
-        "✅ TV vinculada correctamente"
+    response = requests.post(
+        f"http://192.168.15.50:8000/activar/{text}"
     )
 
-else:
+    data = response.json()
 
-    await update.message.reply_text(
-        "❌ Código inválido"
-    )
+    if data.get("success"):
 
-    usuarios_esperando_codigo.remove(update.effective_user.id)
+        await update.message.reply_text(
+            "✅ TV vinculada correctamente"
+        )
+
+    else:
+
+        await update.message.reply_text(
+            "❌ Código incorrecto"
+        )
 
 app = Application.builder().token(TOKEN).build()
 
