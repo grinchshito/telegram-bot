@@ -55,7 +55,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"http://192.168.15.50:8000/activar/{text}"
         )
 
-        data = response.json()
+            data = response.json()
 
         if data.get("success"):
 
