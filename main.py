@@ -47,27 +47,26 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("Tus estadísticas")
 
     elif text == "❓ Ayuda":
-    await update.message.reply_text("Centro de ayuda")
+        await update.message.reply_text("Centro de ayuda")
 
-elif update.effective_user.id in usuarios_esperando_codigo:
+    elif update.effective_user.id in usuarios_esperando_codigo:
 
-          elif update.effective_user.id in usuarios_esperando_codigo:
 
-    response = requests.post(
+            response = requests.post(
         f"http://192.168.15.50:8000/activar/{text}"
     )
 
-    data = response.json()
+        data = response.json()
 
-    if data.get("success"):
+        if data.get("success"):
 
-        await update.message.reply_text(
+            await update.message.reply_text(
             "✅ TV vinculada correctamente"
         )
 
-    else:
+        else:
 
-        await update.message.reply_text(
+            await update.message.reply_text(
             "❌ Código incorrecto"
         )
 
