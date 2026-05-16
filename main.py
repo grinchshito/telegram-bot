@@ -47,8 +47,9 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("Tus estadísticas")
 
     elif text == "❓ Ayuda":
-        await update.message.reply_text("Centro de ayuda")
-    elif update.effective_user.id in usuarios_esperando_codigo:
+    await update.message.reply_text("Centro de ayuda")
+
+elif update.effective_user.id in usuarios_esperando_codigo:
 
           elif update.effective_user.id in usuarios_esperando_codigo:
 
