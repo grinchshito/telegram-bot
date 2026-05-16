@@ -6,7 +6,7 @@ from telegram.ext import (
     ContextTypes,
     filters
 )
-
+import requests
 TOKEN = "8943672380:AAGyuzgm2cCRKvKmXRkYgD-3kHoQOh5L1aM"
 usuarios_esperando_codigo = set()
 
@@ -50,10 +50,23 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("Centro de ayuda")
     elif update.effective_user.id in usuarios_esperando_codigo:
 
-        if text == CODIGO_CORRECTO:
-                await update.message.reply_text("✅ TV activada correctamente")
-        else:
-                await update.message.reply_text("❌ Código incorrecto")
+        response = requests.post(
+    f"http://127.0.0.1:8000/activar/{text}"
+)
+
+data = response.json()
+
+if data.get("success"):
+
+    await update.message.reply_text(
+        "✅ TV vinculada correctamente"
+    )
+
+else:
+
+    await update.message.reply_text(
+        "❌ Código inválido"
+    )
 
     usuarios_esperando_codigo.remove(update.effective_user.id)
 
